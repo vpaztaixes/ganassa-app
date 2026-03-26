@@ -1,3 +1,50 @@
+@media (max-width: 768px) {
+    .clients-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .gallery-item {
+        position: static;
+        height: auto;
+        min-height: unset;
+        max-width: 98vw;
+        margin: 0 auto 12px auto;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+    }
+    .logo-card {
+        position: static;
+        width: 100%;
+        height: auto;
+        min-height: 90px;
+        max-width: 400px;
+        margin: 0 auto;
+        transform: none !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    .logo-front, .logo-back {
+        position: static;
+        width: 100%;
+        height: auto;
+        min-height: 90px;
+        padding: 0.7rem;
+        box-shadow: none;
+    }
+    .logo-front img {
+        max-width: 90%;
+        max-height: 60px;
+        margin: 0 auto;
+        display: block;
+    }
+    .logo-back h4 {
+        font-size: 1rem;
+        margin: 0.5rem 0 0 0;
+    }
+    .logo-card::after, .logo-back::before {
+        display: none !important;
+    }
+}
 /* ===================== RESPONSIVE FIXES FOR MOBILE ===================== */
 @media (max-width: 768px) {
     .clients-grid {

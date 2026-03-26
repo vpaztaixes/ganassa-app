@@ -1,20 +1,20 @@
 /* ===================== RESPONSIVE FIXES FOR MOBILE ===================== */
 @media (max-width: 768px) {
     .player-formation {
-        flex-direction: column;
         gap: 0;
         padding: 10px 0;
     }
     .formation-line {
-        flex-direction: column;
-        gap: 10px;
+        display: block;
         margin: 10px 0;
+        gap: 0;
     }
     .player-card-simple {
         width: 95vw;
         max-width: 350px;
         margin: 0 auto 15px auto;
         min-width: 0;
+        display: block;
     }
     .football-field {
         min-height: unset;
