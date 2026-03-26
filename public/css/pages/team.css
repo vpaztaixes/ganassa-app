@@ -1,36 +1,75 @@
 /* ===================== RESPONSIVE FIXES FOR MOBILE ===================== */
 @media (max-width: 768px) {
     .player-formation {
+        display: flex;
+        flex-direction: column;
         gap: 0;
-        padding: 10px 0;
+        padding: 20px 0;
+        height: auto;
+        min-height: auto;
+        /* Añadimos margen superior para separar del coach en móvil */
+        margin-top: 20px;
     }
     .formation-line {
-        display: block;
-        margin: 10px 0;
+        display: block !important;
+        width: 100%;
+        margin: 0 0 20px 0 !important;
+        padding: 0;
+        flex: none;
+        justify-content: unset;
+        align-items: unset;
         gap: 0;
     }
     .player-card-simple {
-        width: 95vw;
-        max-width: 350px;
-        margin: 0 auto 15px auto;
-        min-width: 0;
-        display: block;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 0 20px 0 !important;
+        display: block !important;
+        float: none !important;
+        box-sizing: border-box;
+        overflow: visible;
+    }
+    .player-card-simple:hover {
+        transform: translateY(-5px);
     }
     .football-field {
         min-height: unset;
-        padding: 10px 2px;
+        height: auto;
+        padding: 20px 15px 40px 15px; /* más padding inferior */
+        overflow-x: hidden;
+    }
+    /* Ajustes para el coach en móvil */
+    .coach-container {
+        position: relative !important;   /* forzamos relativo */
+        top: 0 !important;
+        left: 0 !important;
+        margin-bottom: 30px;            /* separación con los jugadores */
+        text-align: center;
+    }
+    .coach-card {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
     }
 }
 
 @media (max-width: 480px) {
     .player-card-simple {
-        width: 98vw;
-        max-width: 98vw;
-        padding: 10px 2vw;
+        padding: 15px;
+        margin-bottom: 15px !important;
     }
     .formation-line {
-        gap: 5px;
-        margin: 5px 0;
+        margin-bottom: 15px !important;
+    }
+    .player-name-simple {
+        font-size: 1.1rem;
+    }
+    .player-position-simple {
+        font-size: 0.9rem;
+    }
+    .coach-container {
+        margin-bottom: 20px;
     }
 }
 /* ===================== HERO SECTION ===================== */
