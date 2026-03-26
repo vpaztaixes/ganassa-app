@@ -1,0 +1,65 @@
+<%
+    const st = (typeof settings !== 'undefined') ? settings : {};
+    const companyLabel  = lang === 'ja' ? '会社'   : lang === 'ko' ? '회사'   : 'Company';
+    const servicesLabel = lang === 'ja' ? 'サービス' : lang === 'ko' ? '서비스' : 'Services';
+    const contactLabel  = lang === 'ja' ? '連絡先'  : lang === 'ko' ? '연락처' : 'Contact';
+
+    const t = {
+        aboutUs:          lang === 'ja' ? '私たちについて'     : lang === 'ko' ? '회사 소개'       : 'About Us',
+        ourTeam:          lang === 'ja' ? 'チーム'             : lang === 'ko' ? '팀'              : 'Our Team',
+        ourClients:       lang === 'ja' ? 'クライアント'        : lang === 'ko' ? '클라이언트'      : 'Our Clients',
+        partners:         lang === 'ja' ? 'パートナー'          : lang === 'ko' ? '파트너'          : 'Partners',
+        digitalStrategy:  lang === 'ja' ? 'デジタル戦略'        : lang === 'ko' ? '디지털 전략'     : 'Digital Strategy',
+        socialMedia:      lang === 'ja' ? 'ソーシャルメディア'  : lang === 'ko' ? '소셜 미디어'     : 'Social Media',
+        brandActivation:  lang === 'ja' ? 'ブランドアクティベーション' : lang === 'ko' ? '브랜드 활성화' : 'Brand Activation',
+        contentProduction:lang === 'ja' ? 'コンテンツ制作'      : lang === 'ko' ? '콘텐츠 제작'     : 'Content Production',
+    };
+%>
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="/img/Ganassa_Logo_14_Type_White.png" alt="GANASSA">
+                <div class="social-links">
+                    <a href="<%= st.social_linkedin || '#' %>" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="<%= st.social_twitter || '#' %>" aria-label="X/Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a href="<%= st.social_instagram || '#' %>" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4><%= companyLabel %></h4>
+                <ul>
+                    <li><a href="/<%= lang %>/"><%- t.aboutUs %></a></li>
+                    <li><a href="/<%= lang %>/team"><%- t.ourTeam %></a></li>
+                    <li><a href="/<%= lang %>/clients"><%- t.ourClients %></a></li>
+                    <li><a href="/<%= lang %>/partners"><%- t.partners %></a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4><%= servicesLabel %></h4>
+                <ul>
+                    <li><a href="/<%= lang %>/services"><%- t.digitalStrategy %></a></li>
+                    <li><a href="/<%= lang %>/services"><%- t.socialMedia %></a></li>
+                    <li><a href="/<%= lang %>/services"><%- t.brandActivation %></a></li>
+                    <li><a href="/<%= lang %>/services"><%- t.contentProduction %></a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4><%= contactLabel %></h4>
+                <ul>
+                    <li><%= st.office_japan || 'Ganassa LLC - Tokyo and Higashikawa, Japan' %></li>
+                    <li><%= st.office_singapore || 'Ganassa PTE LTD - Singapore' %></li>
+                    <li><%= st.office_china || 'Ganassa Sports Consulting LTD - Shanghai, China' %></li>
+                    <li><%= st.office_spain || 'Ganassa Europe - Madrid, Spain' %></li>
+                    <li><a href="mailto:<%= st.contact_email || 'info@ganassa.jp' %>"><%= st.contact_email || 'info@ganassa.jp' %></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <%= st.footer_copyright || '&copy; ' + currentYear + ' GANASSA. All Rights Reserved.' %>
+        </div>
+    </div>
+</footer>

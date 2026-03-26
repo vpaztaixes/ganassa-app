@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <%- include('../partials/seo-head') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/Ganassa_Logo_01_Main.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/tokyo-summit.css">
+</head>
+<body>
+
+<%- include('../partials/preloader') %>
+<%- include('../partials/header') %>
+
+<%
+    const c = content || {};
+    const hero = c.hero || {};
+    const about = c.about || {};
+    const objectives = c.objectives || {};
+    const audience = c.audience || {};
+    const register = c.register || {};
+    const formEnabled = (settings && settings.summit_form_enabled === 'true');
+    const announcement = c.announcement || {};
+    const _lbl = function(f, key) { return (lang !== 'en' && f[key + '_' + lang]) || f[key + '_en'] || ''; };
+%>
+
+<!-- HERO -->
+<section class="summit-hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1><%- hero.title || 'TOKYO <span>SUMMIT 2026</span>' %></h1>
+        </div>
+    </div>
+</section>
+
+<% if (!formEnabled) { %>
+<!-- ANNOUNCEMENT -->
+<section class="announcement-section">
+    <div class="container">
+        <div class="announcement-date"><%= announcement.date || 'September 25th, 2026' %></div>
+        <div class="announcement-comingsoon"><span><%= announcement.coming_soon || 'Coming soon' %></span></div>
+    </div>
+</section>
+<% } %>
+
+<% if (formEnabled) { %>
+
+<!-- EVENT INFO -->
+<section class="event-info">
+    <div class="container">
+        <div class="section-title-center">
+            <h2><%- about.title || 'ABOUT THE <span>SUMMIT</span>' %></h2>
+        </div>
+        <div class="event-description">
+            <p><%= about.description || 'Tokyo Summit 2026 is the premier gathering for football industry leaders, club executives, marketing professionals, and digital innovators from Europe and Asia. Join us for three days of networking, insights, and strategic discussions on the future of football business in the Asian market.' %></p>
+        </div>
+        <div class="event-highlights">
+            <div class="highlight-card">
+                <div class="highlight-icon"><i class="fas fa-handshake"></i></div>
+                <h3><%= about.card1_title || 'Networking Opportunities' %></h3>
+                <p><%= about.card1_desc || 'Connect with 500+ senior executives from top European clubs and Asian football organizations in dedicated networking sessions.' %></p>
+            </div>
+            <div class="highlight-card">
+                <div class="highlight-icon"><i class="fas fa-chart-line"></i></div>
+                <h3><%= about.card2_title || 'Market Insights' %></h3>
+                <p><%= about.card2_desc || 'Gain exclusive insights into Asian football markets, fan behavior, and commercial opportunities from industry experts.' %></p>
+            </div>
+            <div class="highlight-card">
+                <div class="highlight-icon"><i class="fas fa-microphone"></i></div>
+                <h3><%= about.card3_title || 'Expert Speakers' %></h3>
+                <p><%= about.card3_desc || 'Learn from 50+ influential speakers including club presidents, marketing directors, and digital strategy leaders.' %></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OBJECTIVES -->
+<section class="objectives-section">
+    <div class="container">
+        <div class="section-title-center">
+            <h2><%- objectives.title || 'SUMMIT <span>OBJECTIVES</span>' %></h2>
+        </div>
+        <div class="objectives-grid">
+            <div class="objective-card">
+                <div class="objective-number">01</div>
+                <h3><%= objectives.item1_title || 'Bridge European & Asian Football' %></h3>
+                <p><%= objectives.item1_desc || 'Create meaningful connections between European football clubs and Asian markets, fostering mutual understanding and collaboration across continents.' %></p>
+            </div>
+            <div class="objective-card">
+                <div class="objective-number">02</div>
+                <h3><%= objectives.item2_title || 'Share Market Intelligence' %></h3>
+                <p><%= objectives.item2_desc || 'Provide deep insights into Asian football markets, fan culture, digital consumption patterns, and commercial opportunities for European clubs.' %></p>
+            </div>
+            <div class="objective-card">
+                <div class="objective-number">03</div>
+                <h3><%= objectives.item3_title || 'Foster Strategic Partnerships' %></h3>
+                <p><%= objectives.item3_desc || 'Facilitate B2B meetings and networking opportunities that lead to concrete partnerships, sponsorships, and collaborative projects.' %></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHO SHOULD ATTEND -->
+<section class="audience-section">
+    <div class="container">
+        <div class="section-title-center">
+            <h2><%- audience.title || 'WHO SHOULD <span>ATTEND</span>' %></h2>
+        </div>
+        <div class="audience-grid">
+            <div class="audience-card">
+                <div class="audience-icon"><i class="fas fa-users"></i></div>
+                <h3><%= audience.card1_title || 'Club Executives' %></h3>
+                <p><%= audience.card1_desc || 'CEOs, Presidents, and Directors from European football clubs looking to expand into Asian markets and build their international presence.' %></p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon"><i class="fas fa-bullhorn"></i></div>
+                <h3><%= audience.card2_title || 'Marketing Directors' %></h3>
+                <p><%= audience.card2_desc || 'Marketing and commercial leaders responsible for international expansion, brand development, and fan engagement strategies.' %></p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon"><i class="fas fa-globe"></i></div>
+                <h3><%= audience.card3_title || 'Digital Strategy Heads' %></h3>
+                <p><%= audience.card3_desc || 'Digital and social media executives focused on content localization, platform strategy, and Asian fan community building.' %></p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon"><i class="fas fa-handshake"></i></div>
+                <h3><%= audience.card4_title || 'Sponsorship Managers' %></h3>
+                <p><%= audience.card4_desc || 'Partnership and sponsorship professionals seeking Asian brand collaborations and commercial opportunities in football.' %></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REGISTRATION FORM -->
+<section class="registration-section" id="registration">
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h2><%= (settings && settings.summit_reg_title) || register.title || 'REGISTER NOW' %></h2>
+                <p><%= (settings && settings.summit_reg_description) || register.description || 'Secure your spot at Tokyo Summit 2026. Limited seats available for this exclusive football business event.' %></p>
+            </div>
+            <div class="form-body">
+                <form id="summitRegistrationForm">
+                    <%
+                    const sFields = (summitFormFields && summitFormFields.length) ? summitFormFields : null;
+                    if (sFields) {
+                        let si = 0;
+                        while (si < sFields.length) {
+                            const sf = sFields[si];
+                            const sfWide = (sf.field_type === 'textarea');
+                            if (sfWide) {
+                    %>
+                    <div class="form-group full-width">
+                        <label for="sf-<%= sf.field_name %>"><%= _lbl(sf,'label') %><%= sf.is_required ? ' *' : '' %></label>
+                        <textarea id="sf-<%= sf.field_name %>" name="<%= sf.field_name %>" <%= sf.is_required ? 'required' : '' %> placeholder="<%= _lbl(sf,'placeholder') %>"></textarea>
+                    </div>
+                    <%      si++;
+                            } else {
+                                const sf2 = sFields[si + 1] && sFields[si + 1].field_type !== 'textarea' ? sFields[si + 1] : null;
+                    %>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sf-<%= sf.field_name %>"><%= _lbl(sf,'label') %><%= sf.is_required ? ' *' : '' %></label>
+                            <% if (sf.field_type === 'select') { %>
+                            <select id="sf-<%= sf.field_name %>" name="<%= sf.field_name %>" <%= sf.is_required ? 'required' : '' %>>
+                                <option value=""><%= _lbl(sf,'placeholder') || 'Select...' %></option>
+                                <% (sf.options_json || []).forEach(function(opt) { %>
+                                <option value="<%= opt.value %>"><%= opt.label %></option>
+                                <% }); %>
+                            </select>
+                            <% } else { %>
+                            <input type="<%= sf.field_type %>" id="sf-<%= sf.field_name %>" name="<%= sf.field_name %>" <%= sf.is_required ? 'required' : '' %> placeholder="<%= _lbl(sf,'placeholder') %>">
+                            <% } %>
+                        </div>
+                        <% if (sf2) { %>
+                        <div class="form-group">
+                            <label for="sf-<%= sf2.field_name %>"><%= _lbl(sf2,'label') %><%= sf2.is_required ? ' *' : '' %></label>
+                            <% if (sf2.field_type === 'select') { %>
+                            <select id="sf-<%= sf2.field_name %>" name="<%= sf2.field_name %>" <%= sf2.is_required ? 'required' : '' %>>
+                                <option value=""><%= _lbl(sf2,'placeholder') || 'Select...' %></option>
+                                <% (sf2.options_json || []).forEach(function(opt2) { %>
+                                <option value="<%= opt2.value %>"><%= opt2.label %></option>
+                                <% }); %>
+                            </select>
+                            <% } else { %>
+                            <input type="<%= sf2.field_type %>" id="sf-<%= sf2.field_name %>" name="<%= sf2.field_name %>" <%= sf2.is_required ? 'required' : '' %> placeholder="<%= _lbl(sf2,'placeholder') %>">
+                            <% } %>
+                        </div>
+                        <% } %>
+                    </div>
+                    <%      si += sf2 ? 2 : 1;
+                            }
+                        }
+                    } else { %>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="summitEmail">Email Address *</label>
+                            <input type="email" id="summitEmail" name="email" required placeholder="your.email@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+81 123 456 7890">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company">Company / Organization *</label>
+                            <input type="text" id="company" name="company" required placeholder="Your company name">
+                        </div>
+                        <div class="form-group">
+                            <label for="position">Position / Title *</label>
+                            <input type="text" id="position" name="position" required placeholder="Your position">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="country">Country *</label>
+                            <select id="country" name="country" required>
+                                <option value="">Select your country</option>
+                                <option value="japan">Japan</option>
+                                <option value="south-korea">South Korea</option>
+                                <option value="china">China</option>
+                                <option value="singapore">Singapore</option>
+                                <option value="uk">United Kingdom</option>
+                                <option value="germany">Germany</option>
+                                <option value="spain">Spain</option>
+                                <option value="italy">Italy</option>
+                                <option value="france">France</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ticketType">Ticket Type *</label>
+                            <select id="ticketType" name="ticketType" required>
+                                <option value="">Select ticket type</option>
+                                <option value="standard">Standard Pass (3 Days) - ¥150,000</option>
+                                <option value="vip">VIP Pass (3 Days + Networking Events) - ¥250,000</option>
+                                <option value="group">Group Pass (5 People) - ¥600,000</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="specialRequirements">Special Requirements / Questions</label>
+                        <textarea id="specialRequirements" name="specialRequirements" placeholder="Any special dietary requirements, accessibility needs, or questions you have..."></textarea>
+                    </div>
+                    <% } %>
+                    <div class="form-submit">
+                        <button type="submit" class="submit-btn"><%= (settings && settings.summit_reg_submit_btn) || register.submit_btn || 'SUBMIT REGISTRATION' %></button>
+                        <p style="margin-top:1.5rem;color:var(--grey);font-size:0.9rem;">* Required fields. You will receive a confirmation email within 24 hours.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% } %>
+
+<%- include('../partials/footer') %>
+
+<script src="/js/main.js"></script>
+<script src="/js/pages/tokyo-summit.js"></script>
+
+</body>
+</html>

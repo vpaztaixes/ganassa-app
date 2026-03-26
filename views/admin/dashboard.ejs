@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashboard | GANASSA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="icon" type="image/png" href="/img/Ganassa_Logo_01_Main.png">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <div class="admin-header">
+        <h1>GANASSA <span>CMS</span></h1>
+        <div class="user-info">
+            <span><%= typeof user !== 'undefined' && user ? user.email : '' %></span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <nav class="admin-nav">
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="home"><i class="fa-solid fa-house tab-icon" aria-hidden="true"></i> Home</button>
+            <button class="tab-btn" data-tab="services"><i class="fa-solid fa-gears tab-icon" aria-hidden="true"></i> Services</button>
+            <button class="tab-btn" data-tab="team"><i class="fa-solid fa-users tab-icon" aria-hidden="true"></i> Team</button>
+            <button class="tab-btn" data-tab="clients"><i class="fa-solid fa-briefcase tab-icon" aria-hidden="true"></i> Clients</button>
+            <button class="tab-btn" data-tab="contact"><i class="fa-solid fa-envelope tab-icon" aria-hidden="true"></i> Contact</button>
+            <button class="tab-btn" data-tab="tokyoSummit"><i class="fa-solid fa-city tab-icon" aria-hidden="true"></i> Tokyo Summit</button>
+        </div>
+        <div class="nav-actions">
+            <button class="tab-btn" data-tab="settings"><i class="fa-solid fa-gear tab-icon" aria-hidden="true"></i> Settings</button>
+        </div>
+    </nav>
+
+    <main class="admin-content">
+        <div class="page-header">
+            <div>
+                <h2 id="editorTitle">Home Page</h2>
+                <p class="section-intro" id="editorDescription">Update text and blocks for the home page. Each tab matches one section of the website.</p>
+            </div>
+            <button class="secondary-btn" id="reloadBlocksBtn" title="Reload page content"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i> Refresh</button>
+        </div>
+
+        <section class="tab-panel active" id="tab-content">
+                <section class="summit-toggle hidden" id="summitTogglePanel">
+                    <h3>Tokyo Summit Website Mode</h3>
+                    <p class="section-intro">Elige qué ven los visitantes al abrir la página de Tokyo Summit. El cambio es inmediato.</p>
+                    <div class="toggle-card">
+                        <div class="summit-switch-wrap">
+                            <div class="summit-switch-row">
+                                <span class="summit-switch-label" id="summitLabelOff">Coming Soon</span>
+                                <label class="summit-toggle-switch" title="Toggle summit mode">
+                                    <input type="checkbox" id="summitLiveToggle">
+                                    <span class="summit-toggle-track">
+                                        <span class="summit-toggle-thumb"></span>
+                                    </span>
+                                </label>
+                                <span class="summit-switch-label right" id="summitLabelOn">Live</span>
+                            </div>
+                            <div class="summit-status-badge" id="summitStatusBadge">
+                                <i class="fa-solid fa-circle" aria-hidden="true"></i>
+                                <span id="summitStatusText">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="section-groups" id="sectionGroups">
+                    <div class="empty-state">Select a section above to load page content.</div>
+                </div>
+
+                <section class="team-manager hidden" id="teamManagerPanel">
+                    <h3>Team Members</h3>
+                    <p class="section-intro">Add, remove or update team members. Changes appear immediately on the website.</p>
+                    <div class="add-new-bar">
+                        <button class="primary-btn" onclick="openAddTeamForm()"><i class="fa-solid fa-plus" aria-hidden="true"></i> Add Member</button>
+                    </div>
+                    <div id="addTeamForm" class="add-row-form hidden">
+                        <h4>New Team Member</h4>
+                        <div class="add-form-grid">
+                            <input type="text" id="newTeamName" placeholder="Full name *" />
+                            <input type="text" id="newTeamPosition" placeholder="Position (English) *" />
+                            <input type="text" id="newTeamDepartment" placeholder="Department / group" />
+                            <input type="text" id="newTeamFieldPos" placeholder="Field position (GK, CB...)" />
+                            <input type="url" id="newTeamLinkedin" placeholder="LinkedIn URL (https://linkedin.com/in/...)" style="grid-column:1/-1" />
+                            <div class="photo-input-controls" style="grid-column:1/-1">
+                                <input type="text" id="newTeamPhoto" placeholder="Photo URL or upload below" />
+                                <label class="upload-icon-btn">
+                                    <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i> Subir foto
+                                    <input type="file" accept="image/jpeg,image/png,image/gif,image/webp,image/svg+xml" style="display:none" onchange="uploadNewTeamPhoto(this)">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="add-form-actions">
+                            <button class="primary-btn" onclick="addTeamMember()">Save Member</button>
+                            <button class="secondary-btn" onclick="closeAddTeamForm()">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="table-wrap"><table class="admin-table" id="teamManagerTable"></table></div>
+                </section>
+
+                <section class="team-manager hidden" id="clientsManagerPanel">
+                    <h3>Client Logos</h3>
+                    <p class="section-intro">Add or remove clients shown on the website.</p>
+                    <div class="add-new-bar">
+                        <button class="primary-btn" onclick="openAddClientForm()"><i class="fa-solid fa-plus" aria-hidden="true"></i> Add Client</button>
+                    </div>
+                    <div id="addClientForm" class="add-row-form hidden">
+                        <h4>New Client</h4>
+                        <div class="add-form-grid">
+                            <input type="text" id="newClientName" placeholder="Client name *" />
+                            <input type="url" id="newClientWebsite" placeholder="Website URL (https://...)" />
+                            <div class="photo-input-controls" style="grid-column:1/-1">
+                                <input type="text" id="newClientLogo" placeholder="Logo URL or upload below" />
+                                <label class="upload-icon-btn">
+                                    <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i> Subir logo
+                                    <input type="file" accept="image/jpeg,image/png,image/gif,image/webp,image/svg+xml" style="display:none" onchange="uploadNewLogoGeneric('newClientLogo', this)">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="add-form-actions">
+                            <button class="primary-btn" onclick="addClient()">Save Client</button>
+                            <button class="secondary-btn" onclick="closeAddClientForm()">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="table-wrap"><table class="admin-table" id="clientsManagerTable"></table></div>
+                </section>
+
+                <section class="team-manager hidden" id="testimonialsManagerPanel">
+                    <h3>Client Testimonials</h3>
+                    <p class="section-intro">Add or remove testimonials shown on the clients page.</p>
+                    <div class="add-new-bar">
+                        <button class="primary-btn" onclick="openAddTestimonialForm()"><i class="fa-solid fa-plus" aria-hidden="true"></i> Add Testimonial</button>
+                    </div>
+                    <div id="addTestimonialForm" class="add-row-form hidden">
+                        <h4>New Testimonial</h4>
+                        <div class="add-form-grid">
+                            <input type="text" id="newTestimonialAuthor" placeholder="Author name *" />
+                            <input type="text" id="newTestimonialPosition" placeholder="Position / Title (English) *" />
+                            <div class="photo-input-controls" style="grid-column:1/-1">
+                                <input type="text" id="newTestimonialAvatar" placeholder="Author avatar URL or upload" />
+                                <label class="upload-icon-btn">
+                                    <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i> Upload avatar
+                                    <input type="file" accept="image/jpeg,image/png,image/gif,image/webp,image/svg+xml" style="display:none" onchange="uploadNewLogoGeneric('newTestimonialAvatar', this)">
+                                </label>
+                            </div>
+                            <div class="photo-input-controls" style="grid-column:1/-1">
+                                <input type="text" id="newTestimonialLogo" placeholder="Club/team logo URL or upload" />
+                                <label class="upload-icon-btn">
+                                    <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i> Upload logo
+                                    <input type="file" accept="image/jpeg,image/png,image/gif,image/webp,image/svg+xml" style="display:none" onchange="uploadNewLogoGeneric('newTestimonialLogo', this)">
+                                </label>
+                            </div>
+                            <textarea id="newTestimonialQuoteEn" placeholder="Quote (English) *" style="grid-column:1/-1; min-height:80px"></textarea>
+                            <input type="text" id="newTestimonialPositionJa" placeholder="Position (Japanese)" />
+                            <input type="text" id="newTestimonialPositionKo" placeholder="Position (Korean)" />
+                            <textarea id="newTestimonialQuoteJa" placeholder="Quote (Japanese)" style="grid-column:1/-1; min-height:80px"></textarea>
+                            <textarea id="newTestimonialQuoteKo" placeholder="Quote (Korean)" style="grid-column:1/-1; min-height:80px"></textarea>
+                        </div>
+                        <div class="add-form-actions">
+                            <button class="primary-btn" onclick="addTestimonial()">Save Testimonial</button>
+                            <button class="secondary-btn" onclick="closeAddTestimonialForm()">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="table-wrap"><table class="admin-table" id="testimonialsManagerTable"></table></div>
+                </section>
+
+                <section class="team-manager hidden" id="partnersManagerPanel">
+                    <h3>Partner Logos (Home Page Marquee)</h3>
+                    <p class="section-intro">Add or remove partners shown in the scrolling marquee on the home page.</p>
+                    <div class="add-new-bar">
+                        <button class="primary-btn" onclick="openAddPartnerForm()"><i class="fa-solid fa-plus" aria-hidden="true"></i> Add Partner</button>
+                    </div>
+                    <div id="addPartnerForm" class="add-row-form hidden">
+                        <h4>New Partner</h4>
+                        <div class="add-form-grid">
+                            <input type="text" id="newPartnerName" placeholder="Partner name *" />
+                            <input type="url" id="newPartnerWebsite" placeholder="Website URL (https://...)" />
+                            <input type="text" id="newPartnerCountry" placeholder="Country (e.g. Japan)" />
+                            <div class="photo-input-controls" style="grid-column:1/-1">
+                                <input type="text" id="newPartnerLogo" placeholder="Logo URL or upload below" />
+                                <label class="upload-icon-btn">
+                                    <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i> Subir logo
+                                    <input type="file" accept="image/jpeg,image/png,image/gif,image/webp,image/svg+xml" style="display:none" onchange="uploadNewLogoGeneric('newPartnerLogo', this)">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="add-form-actions">
+                            <button class="primary-btn" onclick="addPartner()">Save Partner</button>
+                            <button class="secondary-btn" onclick="closeAddPartnerForm()">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="table-wrap"><table class="admin-table" id="partnersManagerTable"></table></div>
+                </section>
+
+                <section class="team-manager hidden" id="servicesManagerPanel">
+                    <h3>Service Images</h3>
+                    <p class="section-intro">Change the image for each service card.</p>
+                    <div class="table-wrap"><table class="admin-table" id="servicesManagerTable"></table></div>
+                </section>
+
+                <section class="team-manager hidden" id="settingsManagerPanel">
+                    <h3>Site Settings</h3>
+
+                    <article class="section-card" style="margin-bottom:24px">
+                        <header class="section-card-head">
+                            <h3><i class="fa-solid fa-language" aria-hidden="true"></i> Automatic Translation</h3>
+                        </header>
+                        <div class="settings-fields">
+                            <div class="settings-field-row">
+                                <label class="settings-field-label">Force Translate Everything</label>
+                                <div class="settings-field-input-wrap">
+                                    <button class="primary-btn" id="translateAllBtn" onclick="runTranslateAll()">
+                                        <i class="fa-solid fa-language" aria-hidden="true"></i> Translate Entire Website
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="translateAllResult" style="display:none; padding: 12px 0; color: var(--green); font-size:0.95rem;"></div>
+                        </div>
+                    </article>
+
+                    <div id="settingsForm"></div>
+
+                    <article class="section-card" style="margin-top:24px">
+                        <header class="section-card-head">
+                            <h3><i class="fa-solid fa-lock" aria-hidden="true"></i> Change Password</h3>
+                        </header>
+                        <div class="settings-fields">
+                            <div class="settings-field-row">
+                                <label class="settings-field-label" for="currentPassword">Current Password</label>
+                                <div class="settings-field-input-wrap">
+                                    <input type="password" id="currentPassword" class="table-input" placeholder="Enter current password" autocomplete="current-password">
+                                </div>
+                            </div>
+                            <div class="settings-field-row">
+                                <label class="settings-field-label" for="newPassword">New Password</label>
+                                <div class="settings-field-input-wrap">
+                                    <input type="password" id="newPassword" class="table-input" placeholder="Min. 8 characters" autocomplete="new-password">
+                                </div>
+                            </div>
+                            <div class="settings-field-row">
+                                <label class="settings-field-label" for="confirmPassword">Confirm New Password</label>
+                                <div class="settings-field-input-wrap">
+                                    <input type="password" id="confirmPassword" class="table-input" placeholder="Repeat new password" autocomplete="new-password">
+                                    <button class="primary-btn" onclick="changePassword()">Change Password</button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="team-manager hidden" id="contactFormFieldsPanel">
+                    <div id="contactFormSettings"></div>
+                    <h3>Contact Form Fields</h3>
+                    <p class="section-intro">Add, remove or reorder fields shown in the contact form. Core fields (marked with a lock) cannot be deleted.</p>
+                    <div class="add-new-bar">
+                        <button class="primary-btn" onclick="openAddFormFieldForm('contact')"><i class="fa-solid fa-plus" aria-hidden="true"></i> Add Field</button>
+                    </div>
+                    <div id="addContactFieldForm" class="add-row-form hidden">
+                        <h4>New Contact Form Field</h4>
+                        <div class="add-form-grid">
+                            <input type="text" id="newContactFieldLabel" placeholder="Label (e.g. Job Title) *" />
+                            <input type="text" id="newContactFieldName" placeholder="Field name / key (e.g. jobTitle) *" />
+                            <select id="newContactFieldType">
+                                <option value="text">Text</option>
+                                <option value="email">Email</option>
+                                <option value="tel">Phone</option>
+                                <option value="textarea">Textarea</option>
+                                <option value="number">Number</option>
+                            </select>
+                            <input type="text" id="newContactFieldPlaceholder" placeholder="Placeholder text" />
+                            <input type="number" id="newContactFieldSort" placeholder="Sort order" value="100" min="0" max="999" />
+                            <label class="visible-toggle-label" style="align-self:center">
+                                <input type="checkbox" id="newContactFieldRequired"> Required
+                            </label>
+                        </div>
+                        <div class="add-form-actions">
+                            <button class="primary-btn" onclick="addFormField('contact')">Save Field</button>
+                            <button class="secondary-btn" onclick="closeAddFormFieldForm('contact')">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="table-wrap"><table class="admin-table" id="contactFormFieldsTable"></table></div>
+                </section>
+
+                <section class="content-submissions hidden" id="contactSubmissionsPanel">
+                    <h3>Contact Form Messages</h3>
+                    <p class="section-intro">Messages submitted from the contact page.</p>
+                    <div class="table-wrap"><table class="admin-table" id="submissionsTable"></table></div>
+                </section>
+
+                <section class="content-submissions hidden" id="summitSubmissionsPanel">
+                    <h3>Summit Registration Entries</h3>
+                    <p class="section-intro">All registrations submitted from the Tokyo Summit page.</p>
+                    <div class="table-wrap"><table class="admin-table" id="summitSubmissionsTable"></table></div>
+                </section>
+
+                <section class="team-manager hidden" id="summitFormFieldsPanel">
+                    <div id="summitFormSettings"></div>
+                    <h3>Summit Registration Form Fields</h3>
+                    <p class="section-intro">Add, remove or reorder fields shown in the Tokyo Summit registration form. Core fields (marked with a lock) cannot be deleted.</p>
+                    <div class="add-new-bar">
+                        <button class="primary-btn" onclick="openAddFormFieldForm('summit')"><i class="fa-solid fa-plus" aria-hidden="true"></i> Add Field</button>
+                    </div>
+                    <div id="addSummitFieldForm" class="add-row-form hidden">
+                        <h4>New Summit Registration Field</h4>
+                        <div class="add-form-grid">
+                            <input type="text" id="newSummitFieldLabel" placeholder="Label (e.g. Company Size) *" />
+                            <input type="text" id="newSummitFieldName" placeholder="Field name / key (e.g. companySize) *" />
+                            <select id="newSummitFieldType">
+                                <option value="text">Text</option>
+                                <option value="email">Email</option>
+                                <option value="tel">Phone</option>
+                                <option value="textarea">Textarea</option>
+                                <option value="number">Number</option>
+                            </select>
+                            <input type="text" id="newSummitFieldPlaceholder" placeholder="Placeholder text" />
+                            <input type="number" id="newSummitFieldSort" placeholder="Sort order" value="100" min="0" max="999" />
+                            <label class="visible-toggle-label" style="align-self:center">
+                                <input type="checkbox" id="newSummitFieldRequired"> Required
+                            </label>
+                        </div>
+                        <div class="add-form-actions">
+                            <button class="primary-btn" onclick="addFormField('summit')">Save Field</button>
+                            <button class="secondary-btn" onclick="closeAddFormFieldForm('summit')">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="table-wrap"><table class="admin-table" id="summitFormFieldsTable"></table></div>
+                </section>
+            </section>
+    </main>
+
+    <div class="modal-overlay hidden" id="contentModalOverlay">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contentModalTitle">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <p class="modal-kicker" id="contentModalKicker">Section</p>
+                    <h3 id="contentModalTitle">Edit Block</h3>
+                </div>
+                <button class="modal-close-btn" type="button" id="closeContentModalBtn" aria-label="Close">&#x2715;</button>
+            </div>
+            <div class="modal-current-wrap" id="modalCurrentWrap">
+                <p class="modal-section-label">Current content</p>
+                <div class="modal-current-preview" id="modalCurrentPreview"></div>
+            </div>
+            <form class="modal-form" id="contentModalForm">
+                <input type="hidden" name="blockId" value="">
+                <input type="hidden" name="section" value="">
+                <input type="hidden" name="blockKey" value="">
+                <input type="hidden" name="blockType" value="">
+                <input type="hidden" name="sortOrder" value="0">
+                <div class="modal-new-wrap" id="modalNewWrap">
+                    <label class="modal-section-label" for="modalContentEn">New content</label>
+                    <textarea name="contentEn" id="modalContentEn" placeholder="Enter new content here..." required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn" id="contentModalSubmitBtn">Save Changes</button>
+                    <button type="button" class="secondary-btn" id="cancelContentModalBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function logout() {
+            document.cookie = 'token=; path=/; max-age=0';
+            window.location.href = '/admin/login';
+        }
+    </script>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

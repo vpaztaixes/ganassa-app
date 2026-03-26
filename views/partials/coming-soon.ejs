@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <%- include('./seo-head') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/Ganassa_Logo_01_Main.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        .coming-soon-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--black);
+            color: var(--white);
+            padding: 2rem;
+        }
+        .coming-soon-content h1 {
+            font-family: var(--heading-font);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        .coming-soon-content h1 span {
+            color: var(--shamrock-green);
+        }
+        .coming-soon-content p {
+            font-size: 1.2rem;
+            color: var(--grey);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        .coming-soon-content .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--gradient-green);
+            color: white;
+            font-family: var(--heading-font);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        .coming-soon-content .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow-hover);
+        }
+    </style>
+</head>
+<body>
+
+<%- include('./preloader') %>
+<%- include('./header') %>
+
+<section class="coming-soon-section">
+    <div class="coming-soon-content">
+        <h1><span>COMING</span> SOON</h1>
+        <p>
+            <%= lang === 'ja' ? 'このページは現在準備中です。近日公開予定です。'
+                : lang === 'ko' ? '이 페이지는 현재 준비 중입니다. 곧 공개됩니다.'
+                : 'This page is currently under preparation. Stay tuned for updates.' %>
+        </p>
+        <a href="/<%= lang %>/" class="btn-primary">
+            <%= lang === 'ja' ? 'ホームに戻る' : lang === 'ko' ? '홈으로 돌아가기' : 'Back to Home' %>
+        </a>
+    </div>
+</section>
+
+<%- include('./footer') %>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

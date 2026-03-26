@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <%- include('../partials/seo-head') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/Ganassa_Logo_01_Main.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/contact.css">
+</head>
+<body>
+
+<%- include('../partials/preloader') %>
+<%- include('../partials/header') %>
+
+<%
+    const c = content || {};
+    const hero = c.hero || {};
+    const info = c.info || {};
+    const cities = c.cities || {};
+    const form = c.form || {};
+    const faq = c.faq || {};
+    const _lbl = function(f, key) { return (lang !== 'en' && f[key + '_' + lang]) || f[key + '_en'] || ''; };
+%>
+
+<!-- HERO -->
+<section class="contact-hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1><%- hero.title || 'GET IN <span>TOUCH</span>' %></h1>
+            <p class="subtitle"><%= hero.subtitle || 'For a tailor-made strategy, a quotation, or to learn more about specific Asian markets and how we can help you, please reach out through the form below or connect with our global network.' %></p>
+        </div>
+    </div>
+</section>
+
+<!-- GLOBAL NETWORK -->
+<section class="contact-info-section">
+    <div class="container">
+        <div class="section-title-center">
+            <h2><%- info.title || 'OUR <span>GLOBAL NETWORK</span>' %></h2>
+            <p style="color: var(--grey-dark); font-size: 1.2rem; max-width: 700px; margin: 1rem auto 0; font-weight: 300;"><%= info.subtitle || 'Connect with Ganassa across continents through our strategic hubs' %></p>
+        </div>
+
+        <div class="cities-grid">
+            <div class="city-card">
+                <div class="city-icon"><i class="fas fa-torii-gate"></i></div>
+                <div class="city-country"><%= cities.city_1_country || 'JAPAN' %></div>
+                <div class="city-entity"><%= cities.city_1_entity || 'Ganassa LLC' %></div>
+                <div class="city-connect"><%= cities.city_connect || 'Use the contact form below to connect' %></div>
+            </div>
+            <div class="city-card">
+                <div class="city-icon"><i class="fas fa-landmark"></i></div>
+                <div class="city-country"><%= cities.city_2_country || 'KOREA' %></div>
+                <div class="city-entity"><%= cities.city_2_entity || 'Ganassa Korea' %></div>
+                <div class="city-connect"><%= cities.city_connect || 'Use the contact form below to connect' %></div>
+            </div>
+            <div class="city-card">
+                <div class="city-icon"><i class="fas fa-umbrella-beach"></i></div>
+                <div class="city-country"><%= cities.city_3_country || 'INDONESIA' %></div>
+                <div class="city-entity"><%= cities.city_3_entity || 'Ganassa Indonesia' %></div>
+                <div class="city-connect"><%= cities.city_connect || 'Use the contact form below to connect' %></div>
+            </div>
+            <div class="city-card">
+                <div class="city-icon"><i class="fas fa-dragon"></i></div>
+                <div class="city-country"><%= cities.city_4_country || 'VIETNAM' %></div>
+                <div class="city-entity"><%= cities.city_4_entity || 'Ganassa Vietnam' %></div>
+                <div class="city-connect"><%= cities.city_connect || 'Use the contact form below to connect' %></div>
+            </div>
+            <div class="city-card">
+                <div class="city-icon"><i class="fas fa-city"></i></div>
+                <div class="city-country"><%= cities.city_5_country || 'CHINA' %></div>
+                <div class="city-entity"><%= cities.city_5_entity || 'Ganassa Sports Consulting LTD' %></div>
+                <div class="city-connect"><%= cities.city_connect || 'Use the contact form below to connect' %></div>
+            </div>
+            <div class="city-card">
+                <div class="city-icon"><i class="fas fa-futbol"></i></div>
+                <div class="city-country"><%= cities.city_6_country || 'SPAIN' %></div>
+                <div class="city-entity"><%= cities.city_6_entity || 'Ganassa Europe' %></div>
+                <div class="city-connect"><%= cities.city_connect || 'Use the contact form below to connect' %></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-form-section" id="contact-form">
+    <div class="container">
+        <div class="section-title-center">
+            <h2><%- form.title || 'SEND US A <span>MESSAGE</span>' %></h2>
+        </div>
+
+        <div class="form-container">
+            <div class="form-header">
+                <h2><%= (settings && settings.contact_form_title) || form.header_title || 'CONTACT FORM' %></h2>
+                <p><%= (settings && settings.contact_form_description) || form.description || 'Fill out the form below and our team will get back to you within 24 hours to discuss how we can help with your football strategy in Asia.' %></p>
+            </div>
+            
+            <div class="form-body">
+                <form id="contactForm">
+                    <%
+                    const cFields = (contactFormFields && contactFormFields.length) ? contactFormFields : null;
+                    if (cFields) {
+                        // Group fields into pairs for two-column rows; textareas get full width
+                        let i = 0;
+                        while (i < cFields.length) {
+                            const f = cFields[i];
+                            const isWide = (f.field_type === 'textarea');
+                            if (isWide) {
+                    %>
+                    <div class="form-group full-width">
+                        <label for="cf-<%= f.field_name %>"><%= _lbl(f,'label') %><%= f.is_required ? ' *' : '' %></label>
+                        <textarea id="cf-<%= f.field_name %>" name="<%= f.field_name %>" <%= f.is_required ? 'required' : '' %> placeholder="<%= _lbl(f,'placeholder') %>"></textarea>
+                    </div>
+                    <%      i++;
+                            } else {
+                                const f2 = cFields[i + 1] && cFields[i + 1].field_type !== 'textarea' ? cFields[i + 1] : null;
+                    %>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cf-<%= f.field_name %>"><%= _lbl(f,'label') %><%= f.is_required ? ' *' : '' %></label>
+                            <input type="<%= f.field_type %>" id="cf-<%= f.field_name %>" name="<%= f.field_name %>" <%= f.is_required ? 'required' : '' %> placeholder="<%= _lbl(f,'placeholder') %>">
+                        </div>
+                        <% if (f2) { %>
+                        <div class="form-group">
+                            <label for="cf-<%= f2.field_name %>"><%= _lbl(f2,'label') %><%= f2.is_required ? ' *' : '' %></label>
+                            <input type="<%= f2.field_type %>" id="cf-<%= f2.field_name %>" name="<%= f2.field_name %>" <%= f2.is_required ? 'required' : '' %> placeholder="<%= _lbl(f2,'placeholder') %>">
+                        </div>
+                        <% } %>
+                    </div>
+                    <%      i += f2 ? 2 : 1;
+                            }
+                        }
+                    } else { %>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactFirstName">First Name *</label>
+                            <input type="text" id="contactFirstName" name="firstName" required placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactLastName">Last Name *</label>
+                            <input type="text" id="contactLastName" name="lastName" required placeholder="Enter your last name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="companyName">Company *</label>
+                            <input type="text" id="companyName" name="company" required placeholder="Your company name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address *</label>
+                            <input type="email" id="contactEmail" name="email" required placeholder="your.email@company.com">
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Please describe your inquiry in detail..."></textarea>
+                    </div>
+                    <% } %>
+
+                    <div class="form-group full-width">
+                        <div class="form-checkbox-group">
+                            <input type="checkbox" id="mailingListOptIn" name="mailingListOptIn">
+                            <label for="mailingListOptIn"><%= form.mailing_checkbox || 'Want to register for our mailing list?' %></label>
+                        </div>
+                    </div>
+
+                    <div class="form-row mailing-extra-fields" id="mailingExtraFields">
+                        <div class="form-group">
+                            <label for="teamSupport"><%= form.mailing_team_label || 'Team You Support' %></label>
+                            <input type="text" id="teamSupport" name="teamSupport" placeholder="<%= form.mailing_team_placeholder || 'Your favorite team' %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="countryFrom"><%= form.mailing_country_label || 'Country you are from' %></label>
+                            <input type="text" id="countryFrom" name="countryFrom" placeholder="<%= form.mailing_country_placeholder || 'Your country' %>">
+                        </div>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="submit-btn"><%= (settings && settings.contact_form_submit_btn) || form.submit_btn || 'SEND MESSAGE' %></button>
+                        <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.7); font-size: 0.9rem;"><%= (settings && settings.contact_form_footer_note) || form.footer_note || '* Required fields. We typically respond within 24 hours on business days.' %></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+    <div class="container">
+        <div class="section-title-center">
+            <h2><%- faq.title || 'FREQUENTLY ASKED <span>QUESTIONS</span>' %></h2>
+            <p style="color: var(--grey-dark); font-size: 1.2rem; max-width: 700px; margin: 1rem auto 0; font-weight: 300;"><%= faq.subtitle || 'Quick answers to common questions about working with Ganassa' %></p>
+        </div>
+
+        <div class="faq-container">
+            <% let lastCategory = null; %>
+            <% (faqItems || []).forEach(function(item) { %>
+            <% if (item.category && item.category !== lastCategory) { lastCategory = item.category; %>
+            <h3 class="faq-category-title"><%= item.category %></h3>
+            <% } %>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3><%= item.question %></h3>
+                    <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <p><%= item.answer %></p>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>
+
+<script src="/js/main.js"></script>
+<script src="/js/pages/contact.js"></script>
+
+</body>
+</html>

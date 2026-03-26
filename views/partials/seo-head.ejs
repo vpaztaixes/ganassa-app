@@ -1,0 +1,40 @@
+<%
+    const s = seo || {};
+    const pageSlug = (page && page.slug && page.slug !== 'home') ? '/' + page.slug : '/';
+    const currentUrl = baseUrl + '/' + lang + pageSlug;
+    const isIndexable = page && page.status === 'live' && !s.noindex;
+%>
+
+<!-- Primary Meta -->
+<title><%= s.title || 'GANASSA | Football Solutions Across Asia' %></title>
+<meta name="description" content="<%= s.description || '' %>">
+
+<!-- Robots -->
+<% if (!isIndexable) { %>
+<meta name="robots" content="noindex, nofollow">
+<% } %>
+
+<!-- Canonical -->
+<link rel="canonical" href="<%= s.canonical_url || currentUrl %>">
+
+<!-- Hreflang -->
+<link rel="alternate" hreflang="en" href="<%= baseUrl %>/en<%= pageSlug %>">
+<link rel="alternate" hreflang="ja" href="<%= baseUrl %>/ja<%= pageSlug %>">
+<link rel="alternate" hreflang="ko" href="<%= baseUrl %>/ko<%= pageSlug %>">
+<link rel="alternate" hreflang="x-default" href="<%= baseUrl %>/en<%= pageSlug %>">
+
+<!-- Open Graph -->
+<meta property="og:title" content="<%= s.og_title || s.title || 'GANASSA' %>">
+<meta property="og:description" content="<%= s.og_description || s.description || '' %>">
+<% if (s.og_image) { %>
+<meta property="og:image" content="<%= s.og_image %>">
+<% } %>
+<meta property="og:url" content="<%= currentUrl %>">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="<%= lang === 'ja' ? 'ja_JP' : lang === 'ko' ? 'ko_KR' : 'en_US' %>">
+<meta property="og:site_name" content="GANASSA">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= s.og_title || s.title || 'GANASSA' %>">
+<meta name="twitter:description" content="<%= s.og_description || s.description || '' %>">

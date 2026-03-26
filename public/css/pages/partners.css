@@ -1,0 +1,889 @@
+/* ===================== PARTNERS HERO SECTION CON FONDO DE LÍNEAS DE CAMPO MEJORADO ===================== */
+        .partners-hero {
+            padding-top: 180px;
+            padding-bottom: 100px;
+            background-color: var(--black);
+            position: relative;
+            overflow: hidden;
+            margin-top: var(--header-height);
+        }
+
+        /* Fondo de líneas de campo de fútbol MEJORADO */
+        .partners-hero::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            /* Líneas blancas del campo (más visibles) */
+            background: 
+                /* Línea central */
+                linear-gradient(90deg, transparent 49.8%, rgba(255, 255, 255, 0.3) 49.8%, rgba(255, 255, 255, 0.3) 50.2%, transparent 50.2%),
+                /* Líneas laterales */
+                linear-gradient(0deg, transparent 94.5%, rgba(255, 255, 255, 0.3) 94.5%, rgba(255, 255, 255, 0.3) 95.5%, transparent 95.5%),
+                linear-gradient(0deg, transparent 4.5%, rgba(255, 255, 255, 0.3) 4.5%, rgba(255, 255, 255, 0.3) 5.5%, transparent 5.5%),
+                /* Líneas de fondo */
+                linear-gradient(90deg, transparent 2%, rgba(255, 255, 255, 0.3) 2%, rgba(255, 255, 255, 0.3) 3%, transparent 3%),
+                linear-gradient(90deg, transparent 97%, rgba(255, 255, 255, 0.3) 97%, rgba(255, 255, 255, 0.3) 98%, transparent 98%),
+                /* Círculo central completo */
+                radial-gradient(circle at 50% 50%, transparent 20%, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.2) 21%, transparent 21%),
+                /* Línea del círculo central */
+                radial-gradient(circle at 50% 50%, transparent 19.5%, rgba(255, 255, 255, 0.3) 19.5%, rgba(255, 255, 255, 0.3) 20.5%, transparent 20.5%),
+                /* Áreas de penal (más definidas) */
+                linear-gradient(90deg, transparent 12%, rgba(255, 255, 255, 0.15) 12%, rgba(255, 255, 255, 0.15) 88%, transparent 88%),
+                /* Fondo verde oscuro con textura */
+                linear-gradient(45deg, rgba(0, 30, 0, 0.9) 0%, rgba(0, 50, 0, 0.85) 100%);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+            z-index: 1;
+            pointer-events: none;
+            animation: fieldLines 30s linear infinite;
+        }
+
+        @keyframes fieldLines {
+            0% {
+                background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+            }
+            100% {
+                background-position: 100px 100px, 100px 100px, 100px 100px, 100px 100px, 100px 100px, 100px 100px, 100px 100px, 100px 100px, 100px 100px;
+            }
+        }
+
+        /* Elementos de fútbol flotantes */
+        .hero-football-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .football-element {
+            position: absolute;
+            font-size: 8rem;
+            color: var(--shamrock-green);
+            opacity: 0.1;
+            animation: floatElement 15s infinite ease-in-out;
+        }
+
+        .football-element:nth-child(1) { 
+            top: 10%; 
+            left: 10%; 
+            animation-delay: 0s; 
+        }
+        .football-element:nth-child(2) { 
+            top: 60%; 
+            right: 15%; 
+            animation-delay: 5s; 
+            animation-duration: 18s;
+        }
+        .football-element:nth-child(3) { 
+            bottom: 20%; 
+            left: 20%; 
+            animation-delay: 10s; 
+            animation-duration: 12s;
+        }
+
+        @keyframes floatElement {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.05;
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+                opacity: 0.15;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .partners-hero h1 {
+            font-size: 5.5rem;
+            color: var(--white);
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .partners-hero h1 span {
+            color: var(--shamrock-green-bright);
+            display: block;
+            text-shadow: 0 0 20px rgba(0, 255, 8, 0.5);
+        }
+
+        .partners-hero .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .partners-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .partner-stat {
+            text-align: center;
+        }
+
+        .partner-stat h3 {
+            font-size: 3.5rem;
+            color: var(--shamrock-green);
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            line-height: 1;
+            text-shadow: 0 0 15px rgba(0, 181, 8, 0.3);
+        }
+
+        .partner-stat p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* ===================== CONSTELACIÓN ESTÁTICA CON FILTROS ===================== */
+        .constellation-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .constellation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 181, 8, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 181, 8, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 181, 8, 0.04) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .section-title-center {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title-center h2 { 
+            font-size: 4rem; 
+            color: var(--white);
+            display: inline-block;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title-center span { 
+            color: var(--shamrock-green-bright);
+            position: relative;
+            text-shadow: 0 0 20px rgba(0, 255, 8, 0.3);
+        }
+
+        .section-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-weight: 300;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Contenedor de constelación */
+        .constellation-container {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        /* Nodos de la constelación (estáticos) */
+        .constellation-node {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            z-index: 5;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            opacity: 1;
+        }
+
+        .constellation-node:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--shamrock-green);
+            box-shadow: 
+                0 25px 50px rgba(0, 181, 8, 0.15),
+                0 0 0 1px rgba(0, 181, 8, 0.1);
+        }
+
+        .constellation-node.active {
+            transform: translateY(-5px);
+            border-color: var(--shamrock-green-bright);
+            box-shadow: 
+                0 20px 40px rgba(0, 255, 8, 0.2),
+                0 0 0 2px rgba(0, 255, 8, 0.1);
+        }
+
+        .constellation-node img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(0.9);
+            transition: all 0.4s ease;
+        }
+
+        .constellation-node:hover img {
+            filter: grayscale(0%) brightness(1.1);
+        }
+
+        .constellation-node.active img {
+            filter: grayscale(0%) brightness(1.2);
+        }
+
+        /* Líneas de conexión */
+        .connection-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(0, 181, 8, 0.2) 20%, 
+                rgba(0, 181, 8, 0.3) 50%, 
+                rgba(0, 181, 8, 0.2) 80%, 
+                transparent 100%);
+            transform-origin: 0 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .connection-line.active {
+            opacity: 0.8;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--shamrock-green) 20%, 
+                var(--shamrock-green-bright) 50%, 
+                var(--shamrock-green) 80%, 
+                transparent 100%);
+            box-shadow: 0 0 10px rgba(0, 255, 8, 0.3);
+        }
+
+        /* Punto central */
+        .constellation-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .center-logo {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 181, 8, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .center-logo img {
+            max-width: 70%;
+            max-height: 70%;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Filtros */
+        .partner-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+            z-index: 10;
+            position: relative;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            font-family: var(--heading-font);
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 181, 8, 0.2), transparent);
+            transition: 0.6s;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--shamrock-green);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .filter-btn:hover::before {
+            left: 100%;
+        }
+
+        .filter-btn.active {
+            background: var(--shamrock-green);
+            border-color: var(--shamrock-green);
+            color: var(--white);
+            box-shadow: 0 0 25px rgba(0, 181, 8, 0.4);
+        }
+
+        /* Estilos para diferentes estados de filtro */
+        .constellation-node.hidden {
+            opacity: 0.2 !important;
+            pointer-events: none;
+            transform: scale(0.9);
+        }
+
+        .constellation-node.highlighted {
+            opacity: 1 !important;
+            transform: translateY(-5px) scale(1.05);
+            border-color: var(--shamrock-green-bright);
+            box-shadow: 
+                0 25px 50px rgba(0, 255, 8, 0.25),
+                0 0 0 2px rgba(0, 255, 8, 0.2);
+        }
+
+        .constellation-node.highlighted img {
+            filter: grayscale(0%) brightness(1.2);
+        }
+
+        /* Estadísticas de filtros */
+        .filter-stats {
+            text-align: center;
+            margin-top: 3rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            z-index: 10;
+            position: relative;
+        }
+
+        .filter-stats span {
+            color: var(--shamrock-green-bright);
+            font-weight: 700;
+        }
+
+        /* ===================== PARTNERSHIP BENEFITS SECTION ===================== */
+        .benefits-section {
+            padding: 120px 0;
+            background: var(--black);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits-section::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 181, 8, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 181, 8, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .benefits-section .section-title-center h2 {
+            color: var(--white);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 181, 8, 0.3);
+            transform: translateY(-10px);
+        }
+
+        .benefit-number {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--shamrock-green);
+            opacity: 0.2;
+            line-height: 1;
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--shamrock-green);
+            margin-bottom: 1.5rem;
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .benefit-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        /* ===================== PARTNERSHIP CTA SECTION MEJORADA ===================== */
+        .partnership-cta {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--shamrock-green) 0%, var(--shamrock-green-dark) 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Fondo con patrones de fútbol */
+        .partnership-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 2%, transparent 2.5%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 2%, transparent 2.5%),
+                radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.05) 2%, transparent 2.5%);
+            background-size: 100px 100px;
+            animation: ctaBackground 20s infinite linear;
+        }
+
+        @keyframes ctaBackground {
+            0% {
+                background-position: 0 0, 0 0, 0 0;
+            }
+            100% {
+                background-position: 100px 100px, -100px -100px, 50px -50px;
+            }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-content h2 {
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            min-width: 200px;
+            transition: var(--transition);
+        }
+
+        .cta-feature:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .cta-feature i {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta-feature h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-feature p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--shamrock-green);
+            padding: 1.3rem 3.5rem;
+            font-family: var(--heading-font);
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            letter-spacing: 1.5px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 181, 8, 0.2), transparent);
+            transition: var(--transition-slow);
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--white);
+            border-color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* ===================== RESPONSIVE DESIGN ===================== */
+        @media (max-width: 1200px) {
+            .partners-hero h1 { 
+                font-size: 4.5rem; 
+            }
+            .section-title-center h2 { 
+                font-size: 3.5rem; 
+            }
+            
+            .nav-menu {
+                gap: 1.5rem;
+            }
+            
+            .nav-link {
+                font-size: 0.9rem;
+            }
+            
+            .footer-grid {
+                gap: 3rem;
+            }
+            
+            .constellation-container {
+                height: 600px;
+            }
+            
+            .constellation-node {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .footer-brand img {
+                max-height: 70px !important;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                position: fixed; 
+                top: 0; 
+                right: -100%; 
+                width: 320px; 
+                height: 100vh;
+                background: var(--shamrock-green-dark); 
+                flex-direction: column;
+                padding: 120px 40px 40px; 
+                transition: 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
+                justify-content: flex-start;
+                z-index: 1000;
+                gap: 1rem;
+            }
+            
+            .nav-menu.active { 
+                right: 0; 
+            }
+            
+            .hamburger { 
+                display: block; 
+            }
+            
+            .nav-actions { 
+                display: none; 
+            }
+            
+            .nav-link {
+                font-size: 1.2rem;
+                padding: 15px 0;
+                width: 100%;
+                text-align: left;
+                letter-spacing: 2px;
+            }
+            
+            .nav-link.tokyo-summit {
+                background: rgba(255, 255, 255, 0.15);
+                padding: 12px 20px;
+                margin-top: 1rem;
+                text-align: center;
+            }
+            
+            .footer-grid { 
+                grid-template-columns: 1fr 1fr; 
+                gap: 3rem; 
+            }
+            
+            .constellation-container {
+                height: 500px;
+            }
+            
+            .constellation-node {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .footer-brand img {
+                max-height: 65px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .partners-hero h1 { 
+                font-size: 3.5rem; 
+            }
+            .partners-hero { 
+                padding-top: 150px; 
+                padding-bottom: 80px; 
+            }
+            
+            .partners-hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .partners-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .cta-content h2 { 
+                font-size: 2.5rem; 
+            }
+            .section-title-center h2 { 
+                font-size: 3rem; 
+            }
+            .footer-grid { 
+                grid-template-columns: 1fr; 
+            }
+            
+            .nav-link {
+                font-size: 1.1rem;
+            }
+            
+            .constellation-container {
+                height: 400px;
+            }
+            
+            .constellation-node {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .partner-filters {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .filter-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.8rem;
+            }
+            
+            .cta-content {
+                padding: 2.5rem;
+            }
+            
+            .cta-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-features {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-brand img {
+                max-height: 60px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .partners-hero h1 { 
+                font-size: 2.8rem; 
+            }
+            .container { 
+                padding: 0 1.5rem; 
+            }
+            
+            header .container {
+                padding: 0 1rem;
+            }
+            
+            .nav-menu {
+                width: 100%;
+                padding: 100px 2rem 2rem;
+            }
+            
+            .nav-link.tokyo-summit {
+                font-size: 1rem;
+                padding: 10px 16px;
+            }
+            
+            .partner-stat h3 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title-center h2 {
+                font-size: 2.5rem;
+            }
+            
+            .constellation-container {
+                height: 350px;
+            }
+            
+            .constellation-node {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .filter-btn {
+                width: 150px;
+                text-align: center;
+            }
+            
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-content p {
+                font-size: 1.1rem;
+            }
+            
+            .footer-brand img {
+                max-height: 50px !important;
+            }
+        }

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <%- include('../partials/seo-head') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/Ganassa_Logo_01_Main.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/home.css">
+</head>
+<body>
+
+<%- include('../partials/preloader') %>
+<%- include('../partials/header') %>
+
+<%
+    const c = content || {};
+    const hero = c.hero || {};
+    const stats = c.stats || {};
+    const expertise = c.expertise || {};
+    const photo = c.photo_showcase || {};
+    const ps = c.partners_section || {};
+%>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-title-container">
+                <div class="title-overlay"></div>
+                <h1><%- hero.title || 'BRIDGING THE<br><span>FOOTBALL WORLD</span> WITH ASIA' %></h1>
+                <div class="title-underline"></div>
+            </div>
+            
+            <p><%= hero.subtitle || 'We are a dynamic team of sports industry experts delivering tailored football solutions across Asia, helping clubs, leagues, and partners grow their presence, engagement, and impact in the region.' %></p>
+            
+            <div class="hero-cta">
+                <a href="/<%= lang %>/services" class="btn-primary"><%= hero.cta_primary_text || 'Explore Our Solutions' %></a>
+                <a href="/<%= lang %>/contact" class="btn-secondary"><%= hero.cta_secondary_text || 'Schedule a Call' %></a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number"><%= stats.years_number || '10+' %></span>
+                    <span class="stat-label"><%= stats.years_label || 'Years of Experience' %></span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number"><%= stats.clients_number || '20+' %></span>
+                    <span class="stat-label"><%= stats.clients_label || 'Clients that Trust Us' %></span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number"><%= stats.markets_number || '5+' %></span>
+                    <span class="stat-label"><%= stats.markets_label || 'Asian Markets' %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OUR EXPERTISE -->
+<section class="expertise-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><%= expertise.title || 'Our Expertise' %></h2>
+            <p><%= expertise.subtitle || '' %></p>
+        </div>
+
+        <div class="expertise-grid-container">
+            <div class="expertise-image expertise-image-1">
+                <img src="<%= expertise.image_1 || '/img/home/1.png' %>" alt="GANASSA in Action">
+            </div>
+            <div class="expertise-image expertise-image-2">
+                <img src="<%= expertise.image_2 || '/img/home/2.png' %>" alt="GANASSA in Action">
+            </div>
+            <div class="expertise-image expertise-image-3">
+                <img src="<%= expertise.image_3 || '/img/home/3.jpg' %>" alt="GANASSA in Action">
+            </div>
+
+            <div class="expertise-card expertise-card-1">
+                <i class="fas fa-mobile-alt expertise-icon"></i>
+                <h3><%= expertise.card_1_title || 'Social Media & Digital' %></h3>
+                <p><%= expertise.card_1_desc || '' %></p>
+                <a href="/<%= lang %>/services#social-media" class="expertise-link"><%= (lang === 'ja' ? '詳しく見る' : (lang === 'ko' ? '더 알아보기' : 'Know More')) %> <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="expertise-card expertise-card-2">
+                <i class="fas fa-bullhorn expertise-icon"></i>
+                <h3><%= expertise.card_2_title || 'Brand Activation' %></h3>
+                <p><%= expertise.card_2_desc || '' %></p>
+                <a href="/<%= lang %>/services#brand-activation" class="expertise-link"><%= (lang === 'ja' ? '詳しく見る' : (lang === 'ko' ? '더 알아보기' : 'Know More')) %> <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="expertise-card expertise-card-3">
+                <i class="fas fa-video expertise-icon"></i>
+                <h3><%= expertise.card_3_title || 'Content Production' %></h3>
+                <p><%= expertise.card_3_desc || '' %></p>
+                <a href="/<%= lang %>/services#content-production" class="expertise-link"><%= (lang === 'ja' ? '詳しく見る' : (lang === 'ko' ? '더 알아보기' : 'Know More')) %> <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PHOTO SHOWCASE -->
+<section class="photo-showcase">
+    <div class="container">
+        <div class="photo-container">
+            <div class="featured-photo">
+                <img src="<%= photo.main_image || '/img/1717178051154.jpeg' %>" alt="GANASSA in Action">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><%= ps.title || 'Our Partners' %></h2>
+            <p><%= ps.subtitle || 'Collaborating with leading platforms and networks across Asia' %></p>
+        </div>
+    </div>
+    <div class="partners-marquee">
+        <div class="partners-track" id="partnersTrack"></div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>
+
+<script id="partners-data" type="application/json">
+<%- JSON.stringify((partners || []).map(function(p) { return {name: p.name, logo: p.logo_url}; })) %>
+</script>
+<script>
+    var partnersData = JSON.parse(document.getElementById('partners-data').textContent);
+</script>
+<script src="/js/main.js"></script>
+<script src="/js/pages/home.js"></script>
+
+</body>
+</html>

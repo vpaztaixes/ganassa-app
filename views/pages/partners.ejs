@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <%- include('../partials/seo-head') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/Ganassa_Logo_01_Main.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/partners.css">
+</head>
+<body>
+
+<%- include('../partials/preloader') %>
+<%- include('../partials/header') %>
+
+<%
+    const c = content || {};
+    const hero = c.hero || {};
+    const constellation = c.constellation || {};
+    const benefits = c.benefits || {};
+%>
+
+<!-- HERO -->
+<section class="partners-hero">
+    <div class="hero-football-elements">
+        <i class="fas fa-futbol football-element"></i>
+        <i class="fas fa-trophy football-element"></i>
+        <i class="fas fa-users football-element"></i>
+    </div>
+    <div class="container">
+        <div class="hero-content">
+            <h1><%- hero.title || 'STRATEGIC <span>PARTNERSHIPS</span>' %></h1>
+            <p class="subtitle"><%= hero.subtitle || 'Powering football solutions across Asia through trusted collaborations with leagues, media networks, technology providers, and football organizations worldwide.' %></p>
+            
+            <div class="partners-stats">
+                <div class="partner-stat">
+                    <h3>50+</h3>
+                    <p>Global Partners</p>
+                </div>
+                <div class="partner-stat">
+                    <h3>15</h3>
+                    <p>Football Leagues</p>
+                </div>
+                <div class="partner-stat">
+                    <h3>8</h3>
+                    <p>Asian Countries</p>
+                </div>
+                <div class="partner-stat">
+                    <h3>100%</h3>
+                    <p>Partner Retention</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONSTELLATION -->
+<section class="constellation-section">
+    <div class="container">
+        <div class="section-title-center">
+            <h2><%- constellation.title || 'OUR PARTNER <span>CONSTELLATION</span>' %></h2>
+        </div>
+
+        <p class="section-description"><%= constellation.subtitle || 'A connected network of strategic collaborations forming our ecosystem of excellence' %></p>
+        
+        <!-- Filters -->
+        <div class="partner-filters">
+            <button class="filter-btn active" data-filter="all">All Partners</button>
+            <button class="filter-btn" data-filter="media">Media Networks</button>
+            <button class="filter-btn" data-filter="tech">Technology</button>
+            <button class="filter-btn" data-filter="social">Social Platforms</button>
+            <button class="filter-btn" data-filter="sports">Sports Data</button>
+        </div>
+        
+        <!-- Constellation container -->
+        <div class="constellation-container" id="constellationContainer">
+            <div class="constellation-center">
+                <div class="center-logo">
+                    <img src="/img/Ganassa_Logo_10_Type+Slogan_White.png" alt="GANASSA">
+                </div>
+            </div>
+            <svg class="constellation-lines" id="constellationLines"></svg>
+        </div>
+
+        <div class="filter-stats" id="filterStats">
+            Showing <span id="visibleCount"><%= (partnersList || []).length %></span> of <span id="totalCount"><%= (partnersList || []).length %></span> partners
+        </div>
+    </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits-section">
+    <div class="container">
+        <div class="section-title-center">
+            <h2><%- benefits.title || 'PARTNERSHIP <span>BENEFITS</span>' %></h2>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-number">01</div>
+                <div class="benefit-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <h3>Market Access & Expertise</h3>
+                <p>Gain direct access to Asian football markets with our localized expertise, cultural understanding, and established network across key territories.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-number">02</div>
+                <div class="benefit-icon"><i class="fas fa-users"></i></div>
+                <h3>Fan Engagement Solutions</h3>
+                <p>Leverage our proven fan engagement strategies, digital platforms, and content localization expertise to build meaningful connections with Asian supporters.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-number">03</div>
+                <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Revenue Growth</h3>
+                <p>Develop sustainable revenue streams through our commercial partnership strategies, merchandising solutions, and sponsorship opportunities in Asian markets.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-number">04</div>
+                <div class="benefit-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Strategic Networking</h3>
+                <p>Connect with our extensive network of football organizations, media partners, and commercial stakeholders across Asia through our partnership ecosystem.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="partnership-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>JOIN OUR ELITE <span>PARTNER NETWORK</span></h2>
+            <p>Become a strategic partner and leverage our Asian market expertise to expand your reach, engage new fans, and unlock unprecedented commercial opportunities in the world's fastest-growing football market.</p>
+            <div class="cta-features">
+                <div class="cta-feature">
+                    <i class="fas fa-globe-asia"></i>
+                    <h4>Asian Market Access</h4>
+                    <p>8 key markets covered</p>
+                </div>
+                <div class="cta-feature">
+                    <i class="fas fa-project-diagram"></i>
+                    <h4>Strategic Network</h4>
+                    <p>50+ premium partners</p>
+                </div>
+                <div class="cta-feature">
+                    <i class="fas fa-trophy"></i>
+                    <h4>Proven Success</h4>
+                    <p>100% retention rate</p>
+                </div>
+            </div>
+            <a href="/<%= lang %>/contact" class="cta-button">
+                <%= (lang === 'ja' ? 'パートナーになる' : (lang === 'ko' ? '파트너 되기' : 'Start Partnership Conversation')) %>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>
+
+<script>
+    var partnersListData = '<%- JSON.stringify((partnersList || []).map(function(p) { return {name: p.name, logo: p.logo_url, category: p.category || "platform"}; })) %>'.replace(/^"(.*)"$/, '$1').split('\\').join('\\\\') || '[]';
+    partnersListData = JSON.parse(partnersListData);
+</script>
+<script src="/js/main.js"></script>
+<script src="/js/pages/partners.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <%- include('../partials/seo-head') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/Ganassa_Logo_01_Main.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/team.css">
+</head>
+<body>
+
+<%- include('../partials/preloader') %>
+<%- include('../partials/header') %>
+
+<%
+    const c = content || {};
+    const hero = c.hero || {};
+    const formation = c.formation || {};
+    const strengths = c.strengths || {};
+    const teamCta = c.cta || {};
+    const members = teamMembers || [];
+    const coach = members.find(function(m) { return m.field_position === 'coach'; });
+    const goalkeepers = members.filter(function(m) { return m.field_position === 'goalkeeper'; });
+    const defenders = members.filter(function(m) { return m.field_position === 'defender'; });
+    const defensiveMids = members.filter(function(m) { return m.field_position === 'midfielder'; });
+    const attackingMids = members.filter(function(m) { return m.field_position === 'attacking_midfielder'; });
+    const strikers = members.filter(function(m) { return m.field_position === 'striker'; });
+%>
+
+<!-- HERO -->
+<section class="team-hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1><%- hero.title || 'OUR<br><span>ULTIMATE TEAM</span>' %></h1>
+            <p class="subtitle"><%= hero.subtitle || "Elite football industry experts pioneering digital innovation across Asian markets. The definitive squad shaping football's digital future." %></p>
+
+            <div class="services-stats">
+                <div class="service-stat">
+                    <h3>30+</h3>
+                    <p>Core Team Members</p>
+                </div>
+                <div class="service-stat">
+                    <h3>8+</h3>
+                    <p>Languages Spoken</p>
+                </div>
+                <div class="service-stat">
+                    <h3>24/7</h3>
+                    <p>Coverage</p>
+                </div>
+                <div class="service-stat">
+                    <h3>100%</h3>
+                    <p>Football Passion</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SQUAD LINEUP -->
+<section class="squad-lineup-section">
+    <div class="container">
+        <div class="squad-header">
+            <h2 class="squad-title"><%= formation.title || 'TACTICAL FORMATION 4-2-3-1' %></h2>
+            <p class="squad-subtitle"><%= formation.subtitle || 'Strategic lineup of football specialists. Each player handpicked for excellence in their position.' %></p>
+        </div>
+
+        <div class="field-container">
+            <div class="football-field" id="footballField">
+                <div class="field-lines">
+                    <div class="center-line"></div>
+                    <div class="center-circle"></div>
+                    <div class="halfway-line"></div>
+                </div>
+
+                <!-- Coach -->
+                <% if (coach) { %>
+                <div class="coach-container">
+                    <div class="coach-card">
+                        <div class="coach-photo">
+                            <img src="<%= coach.photo_url %>" alt="<%= coach.name %>">
+                        </div>
+                        <div class="coach-info">
+                            <div class="coach-name"><%= coach.name %></div>
+                            <div class="coach-position"><%= coach.position %></div>
+                            <% if (coach.bio) { %><div class="coach-role"><%= coach.bio %></div><% } %>
+                        </div>
+                        <% if (coach.linkedin_url) { %>
+                        <a href="<%= coach.linkedin_url %>" target="_blank" class="player-linkedin-simple" style="font-size:0.8rem;padding:6px 12px;">
+                            <i class="fab fa-linkedin"></i> Connect
+                        </a>
+                        <% } %>
+                    </div>
+                </div>
+                <% } %>
+
+                <!-- Player Formation -->
+                <div class="player-formation" id="playerFormation">
+
+                    <!-- GOALKEEPER -->
+                    <div class="formation-line goalkeeper-line">
+                        <% goalkeepers.forEach(function(p) { %>
+                        <div class="player-card-simple">
+                            <div class="player-photo-simple">
+                                <img src="<%= p.photo_url %>" alt="<%= p.name %>">
+                            </div>
+                            <div class="player-info-simple">
+                                <div class="player-name-simple"><%= p.name %></div>
+                                <div class="player-position-simple"><%= p.position %></div>
+                                <% if (p.bio) { %><div class="player-role-simple"><%= p.bio %></div><% } %>
+                            </div>
+                            <a href="<%= p.linkedin_url || '#' %>" target="_blank" class="player-linkedin-simple">
+                                <i class="fab fa-linkedin"></i> Connect
+                            </a>
+                        </div>
+                        <% }); %>
+                    </div>
+
+                    <!-- DEFENSE (4) -->
+                    <div class="formation-line defense-line">
+                        <% defenders.forEach(function(p) { %>
+                        <div class="player-card-simple">
+                            <div class="player-photo-simple">
+                                <img src="<%= p.photo_url %>" alt="<%= p.name %>">
+                            </div>
+                            <div class="player-info-simple">
+                                <div class="player-name-simple"><%= p.name %></div>
+                                <div class="player-position-simple"><%= p.position %></div>
+                                <% if (p.bio) { %><div class="player-role-simple"><%= p.bio %></div><% } %>
+                            </div>
+                            <a href="<%= p.linkedin_url || '#' %>" target="_blank" class="player-linkedin-simple">
+                                <i class="fab fa-linkedin"></i> Connect
+                            </a>
+                        </div>
+                        <% }); %>
+                    </div>
+
+                    <!-- DEFENSIVE MIDFIELD (2) -->
+                    <div class="formation-line defensive-midfield-line">
+                        <% defensiveMids.forEach(function(p) { %>
+                        <div class="player-card-simple">
+                            <div class="player-photo-simple">
+                                <img src="<%= p.photo_url %>" alt="<%= p.name %>">
+                            </div>
+                            <div class="player-info-simple">
+                                <div class="player-name-simple"><%= p.name %></div>
+                                <div class="player-position-simple"><%= p.position %></div>
+                                <% if (p.bio) { %><div class="player-role-simple"><%= p.bio %></div><% } %>
+                            </div>
+                            <a href="<%= p.linkedin_url || '#' %>" target="_blank" class="player-linkedin-simple">
+                                <i class="fab fa-linkedin"></i> Connect
+                            </a>
+                        </div>
+                        <% }); %>
+                    </div>
+
+                    <!-- ATTACKING MIDFIELD (3) -->
+                    <div class="formation-line attacking-midfield-line">
+                        <% attackingMids.forEach(function(p) { %>
+                        <div class="player-card-simple">
+                            <div class="player-photo-simple">
+                                <img src="<%= p.photo_url %>" alt="<%= p.name %>">
+                            </div>
+                            <div class="player-info-simple">
+                                <div class="player-name-simple"><%= p.name %></div>
+                                <div class="player-position-simple"><%= p.position %></div>
+                                <% if (p.bio) { %><div class="player-role-simple"><%= p.bio %></div><% } %>
+                            </div>
+                            <a href="<%= p.linkedin_url || '#' %>" target="_blank" class="player-linkedin-simple">
+                                <i class="fab fa-linkedin"></i> Connect
+                            </a>
+                        </div>
+                        <% }); %>
+                    </div>
+
+                    <!-- STRIKER (1) -->
+                    <div class="formation-line striker-line">
+                        <% strikers.forEach(function(p) { %>
+                        <div class="player-card-simple">
+                            <div class="player-photo-simple">
+                                <img src="<%= p.photo_url %>" alt="<%= p.name %>">
+                            </div>
+                            <div class="player-info-simple">
+                                <div class="player-name-simple"><%= p.name %></div>
+                                <div class="player-position-simple"><%= p.position %></div>
+                                <% if (p.bio) { %><div class="player-role-simple"><%= p.bio %></div><% } %>
+                            </div>
+                            <a href="<%= p.linkedin_url || '#' %>" target="_blank" class="player-linkedin-simple">
+                                <i class="fab fa-linkedin"></i> Connect
+                            </a>
+                        </div>
+                        <% }); %>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM STRENGTHS -->
+<section class="team-strengths">
+    <div class="container">
+        <div class="strengths-container">
+            <div class="strengths-title"><%= strengths.title || 'OUR TEAM STRENGTHS' %></div>
+            <div class="strengths-grid">
+                <div class="strength-item">
+                    <div class="strength-icon"><i class="fas fa-trophy"></i></div>
+                    <h3><%= strengths.strength_1_title || 'PROVEN TRACK RECORD' %></h3>
+                    <p><%= strengths.strength_1_desc || 'Trusted by leading European clubs and organizations, delivering measurable results through tested fan-engagement strategies.' %></p>
+                </div>
+                <div class="strength-item">
+                    <div class="strength-icon"><i class="fas fa-language"></i></div>
+                    <h3><%= strengths.strength_2_title || 'MULTILINGUAL & MULTICULTURAL TEAM' %></h3>
+                    <p><%= strengths.strength_2_desc || 'An international team that bridges languages and cultures, enabling seamless collaboration between clubs, partners, and local communities.' %></p>
+                </div>
+                <div class="strength-item">
+                    <div class="strength-icon"><i class="fas fa-heart"></i></div>
+                    <h3><%= strengths.strength_3_title || 'PASSION-DRIVEN FOOTBALL FANATICS' %></h3>
+                    <p><%= strengths.strength_3_desc || 'We live and breathe football, combining true fan passion with industry expertise to create content and activations that genuinely resonate.' %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="team-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2><%= teamCta.title || 'WANT TO JOIN OUR TEAM?' %></h2>
+            <p><%= teamCta.description || 'We are always looking for football experts to help us build bridges between cultures.' %></p>
+            <div class="cta-features">
+                <div class="cta-feature">
+                    <i class="fas fa-users"></i>
+                    <h4><%= teamCta.feature_1_title || 'Team Culture' %></h4>
+                    <p><%= teamCta.feature_1_desc || 'Collaborative & innovative environment' %></p>
+                </div>
+                <div class="cta-feature">
+                    <i class="fas fa-globe-asia"></i>
+                    <h4><%= teamCta.feature_2_title || 'Global Impact' %></h4>
+                    <p><%= teamCta.feature_2_desc || 'Work across Asian markets' %></p>
+                </div>
+                <div class="cta-feature">
+                    <i class="fas fa-futbol"></i>
+                    <h4><%= teamCta.feature_3_title || 'Football Passion' %></h4>
+                    <p><%= teamCta.feature_3_desc || 'Work with top football clubs' %></p>
+                </div>
+            </div>
+            <a href="/<%= lang %>/contact" class="cta-button"><%= teamCta.button_text || 'Career Opportunities' %></a>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>
+
+<script src="/js/main.js"></script>
+<script src="/js/pages/team.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <%- include('../partials/seo-head') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/Ganassa_Logo_01_Main.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/services.css">
+</head>
+<body>
+
+<%- include('../partials/preloader') %>
+<%- include('../partials/header') %>
+
+<%
+    const c = content || {};
+    const hero = c.hero || {};
+    const units = c.units || {};
+    const focus = c.focus || {};
+    const cta = c.cta || {};
+%>
+
+<!-- HERO -->
+<section class="services-hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1><%- hero.title || 'Building football communities<br><span>across continents</span>' %></h1>
+            <p class="subtitle"><%= hero.subtitle || 'We provide 360-degree support to top football clubs, leagues, and federations to engage Asian audiences, driving local sponsorships and revenue.' %></p>
+            
+            <div class="services-stats">
+                <div class="service-stat">
+                    <h3><%= hero.stat_1_number || '15+' %></h3>
+                    <p><%= hero.stat_1_label || 'European Football Clubs' %></p>
+                </div>
+                <div class="service-stat">
+                    <h3><%= hero.stat_2_number || '25+' %></h3>
+                    <p><%= hero.stat_2_label || 'Social Media Editors' %></p>
+                </div>
+                <div class="service-stat">
+                    <h3><%= hero.stat_3_number || '8M+' %></h3>
+                    <p><%= hero.stat_3_label || 'Asian Fans Reached' %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="services-grid-section">
+    <div class="container">
+        <div class="section-title-center" style="margin-bottom: 4rem;">
+            <h2><%- units.title || 'OUR <span>UNITS</span>' %></h2>
+        </div>
+
+        <div class="services-grid-wrapper">
+            <% (services || []).forEach(function(svc) { %>
+            <div class="ganassa-service-card card-<%= svc.slug %>">
+                <% if (svc.image_url) { %>
+                <div class="service-logo-wrapper">
+                    <img src="<%= svc.image_url %>" alt="<%= svc.title %>">
+                </div>
+                <% } %>
+                <h3><%= svc.title %></h3>
+                <p><%= svc.description %></p>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTBALL FOCUS -->
+<section class="football-focus">
+    <div class="container">
+        <div class="section-title-center">
+            <h2><%- focus.title || 'EDITORIAL MANAGEMENT AND <span>MEDIA PRODUCTIONS</span>' %></h2>
+        </div>
+
+        <div class="football-stats">
+            <div class="stat-card">
+                <% if (focus.image_artworks) { %><img src="<%= focus.image_artworks %>" alt="Digital Artworks" class="card-image"><% } %>
+                <h3><%= focus.card_1_title || 'DIGITAL ARTWORKS' %></h3>
+                <p><%= focus.card_1_desc || "We create stunning digital artworks and tailored graphics to enhance your brand's visual presence, ensuring a distinctive and engaging look that resonates with the Asian audience." %></p>
+            </div>
+            <div class="stat-card">
+                <% if (focus.image_photography) { %><img src="<%= focus.image_photography %>" alt="Photography" class="card-image"><% } %>
+                <h3><%= focus.card_2_title || 'PHOTOGRAPHY' %></h3>
+                <p><%= focus.card_2_desc || "Our photography combines a strong connection to street style and fashion with expert craftsmanship, producing visuals that enhance exposure while staying true to your brand identity." %></p>
+            </div>
+            <div class="stat-card">
+                <% if (focus.image_videos) { %><img src="<%= focus.image_videos %>" alt="Videos & Docs" class="card-image"><% } %>
+                <h3><%= focus.card_3_title || 'VIDEOS & DOCS' %></h3>
+                <p><%= focus.card_3_desc || "We produce high-quality videos and documentaries that tell the authentic stories of Asia's vibrant football culture and passionate fan communities." %></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="modern-cta-section">
+    <div class="modern-cta-container">
+        <div class="modern-cta-content">
+            <h2><%= cta.title || 'CONNECT WITH MILLIONS OF ASIAN FOOTBALL FANS' %></h2>
+            <p><%= cta.description || 'Join leading European clubs expanding their presence across Asia. We deliver authentic engagement, measurable results, and seamless fan experiences from digital activations to live events and tours.' %></p>
+        </div>
+
+        <div class="modern-cta-gallery">
+            <div class="gallery-item-modern">
+                <% if (cta.gallery_image_1) { %><img src="<%= cta.gallery_image_1 %>" alt="Asian Football Fans"><% } %>
+                <div class="gallery-overlay-modern"></div>
+            </div>
+            <div class="gallery-item-modern">
+                <% if (cta.gallery_image_2) { %><img src="<%= cta.gallery_image_2 %>" alt="Football Event"><% } %>
+                <div class="gallery-overlay-modern"></div>
+            </div>
+            <div class="gallery-item-modern">
+                <% if (cta.gallery_image_3) { %><img src="<%= cta.gallery_image_3 %>" alt="Fan Engagement"><% } %>
+                <div class="gallery-overlay-modern"></div>
+            </div>
+            <div class="gallery-item-modern">
+                <% if (cta.gallery_image_4) { %><img src="<%= cta.gallery_image_4 %>" alt="European Club in Asia"><% } %>
+                <div class="gallery-overlay-modern"></div>
+            </div>
+            <div class="gallery-item-modern">
+                <% if (cta.gallery_image_5) { %><img src="<%= cta.gallery_image_5 %>" alt="Grassroots Football"><% } %>
+                <div class="gallery-overlay-modern"></div>
+            </div>
+            <div class="gallery-item-modern">
+                <% if (cta.gallery_image_6) { %><img src="<%= cta.gallery_image_6 %>" alt="Brand Activation"><% } %>
+                <div class="gallery-overlay-modern"></div>
+            </div>
+        </div>
+
+        <div class="modern-cta-button">
+            <a href="/<%= lang %>/contact">
+                <%= cta.button_text || 'Start Your Journey' %>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>
+
+<script src="/js/main.js"></script>
+<script src="/js/pages/services.js"></script>
+
+</body>
+</html>

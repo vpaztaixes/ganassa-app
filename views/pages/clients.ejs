@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <%- include('../partials/seo-head') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/Ganassa_Logo_01_Main.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pages/clients.css">
+</head>
+<body>
+
+<%- include('../partials/preloader') %>
+<%- include('../partials/header') %>
+
+<%
+    const c = content || {};
+    const hero = c.hero || {};
+    const gallery = c.gallery || {};
+    const cta = c.cta || {};
+%>
+
+<!-- HERO -->
+<section class="clients-hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1><%- hero.title || 'OUR<br><span>ELITE FOOTBALL CLIENTS</span>' %></h1>
+            <p><%= hero.subtitle || "We partner with top European football clubs and organizations to build meaningful connections with Asian fans. Our expertise in cultural localization and digital strategy helps clubs thrive in Asia's dynamic football landscape." %></p>
+        </div>
+    </div>
+</section>
+
+<!-- CLIENTS GALLERY -->
+<section class="clients-gallery-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><%- gallery.title || 'OUR <span>FOOTBALL PARTNERS</span>' %></h2>
+            <p><%= gallery.subtitle || 'Top European football organizations and clubs including FIFA, Bundesliga, Manchester City, and Borussia Dortmund, among others, trust us to support their expansion across Asian markets. Hover over each logo to learn more about our partnerships.' %></p>
+        </div>
+        
+        <div class="clients-grid">
+            <% (clients || []).forEach(function(client) { %>
+            <div class="gallery-item">
+                <div class="logo-card">
+                    <div class="logo-front">
+                        <img src="<%= client.logo_url %>" alt="<%= client.name %>">
+                    </div>
+                    <div class="logo-back">
+                        <h4><%= client.name %></h4>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-header">
+            <% if (lang === 'ja') { %>
+                <h2>クライアントの <span>声</span></h2>
+                <p>私たちがアジアでのファン獲得とプレゼンス拡大をどのようにサポートしたか、クライアントの声をご覧ください。</p>
+            <% } else if (lang === 'ko') { %>
+                <h2>클라이언트 <span>추천사</span></h2>
+                <p>아시아에서 팬 참여와 입지를 강화하는 데 어떻게 도움을 드렸는지 클라이언트의 이야기를 들어보세요!</p>
+            <% } else { %>
+                <h2>CLIENT <span>TESTIMONIALS</span></h2>
+                <p>See what our clients have to say about how we've helped them engage fans and grow their presence in Asia!</p>
+            <% } %>
+        </div>
+        <div class="testimonials-slider">
+            <div class="testimonial-card" id="testimonialCard">
+                <div class="testimonial-quote" id="testimonialQuote"></div>
+                <div class="testimonial-author">
+                    <div class="author-images">
+                        <div class="author-avatar" id="authorAvatar"></div>
+                        <div class="team-logo" id="teamLogo"></div>
+                    </div>
+                    <div class="author-info">
+                        <h4 id="authorName"></h4>
+                        <p id="authorPosition"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-nav" id="testimonialNav"></div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="clients-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2><%= cta.title || 'JOIN OUR FOOTBALL CLIENTS' %></h2>
+            <p><%= cta.description || 'Let us help you build meaningful connections with millions of passionate Asian football fans. Our proven strategies deliver measurable results and sustainable growth in Asia\'s most dynamic markets.' %></p>
+            <a href="/<%= lang %>/contact" class="cta-button"><%= (lang === 'ja' ? 'クライアントになる' : (lang === 'ko' ? '클라이언트 되기' : 'Become A Client')) %></a>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>
+
+<script id="testimonials-data" type="application/json">
+<%- JSON.stringify(testimonials || []) %>
+</script>
+<script>
+    var testimonialsData = JSON.parse(document.getElementById('testimonials-data').textContent);
+</script>
+<script src="/js/main.js"></script>
+<script src="/js/pages/clients.js"></script>
+
+</body>
+</html>

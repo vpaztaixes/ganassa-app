@@ -1,0 +1,49 @@
+<%
+    const navItems = (typeof nav !== 'undefined') ? nav : [];
+    const currentSlg = (typeof currentSlug !== 'undefined') ? currentSlug : '';
+    const pageSlugForLang = (currentSlg && currentSlg !== 'home') ? '/' + currentSlg : '/';
+    const contactLabel = lang === 'ja' ? 'お問い合わせ' : lang === 'ko' ? '문의하기' : 'Contact Us';
+%>
+<header id="header">
+    <div class="container">
+        <a href="/<%= lang %>/" class="logo">
+            <img src="/img/Ganassa_Logo_10_Type+Slogan_White.png" alt="GANASSA"> 
+        </a>
+
+        <nav class="nav-menu" id="navMenu">
+            <% navItems.forEach(function(item) { %>
+                <% 
+                    const href = '/' + lang + (item.slug === 'home' ? '/' : '/' + item.slug);
+                    const isActive = (item.slug === currentSlg) ? ' active' : '';
+                    const extraClass = item.nav_class ? ' ' + item.nav_class : '';
+                %>
+                <a href="<%= href %>" class="nav-link<%= isActive %><%= extraClass %>"><%= item.label %></a>
+            <% }); %>
+            
+            <!-- Mobile: language switch + contact button -->
+            <div class="nav-actions-mobile">
+                <div class="lang-switch">
+                    <a href="/ja<%= pageSlugForLang %>"<% if (lang === 'ja') { %> class="active"<% } %>>JP</a>
+                    <a href="/en<%= pageSlugForLang %>"<% if (lang === 'en') { %> class="active"<% } %>>EN</a>
+                    <a href="/ko<%= pageSlugForLang %>"<% if (lang === 'ko') { %> class="active"<% } %>>KR</a>
+                </div>
+                <a href="/<%= lang %>/contact" class="btn-primary"><%= contactLabel %></a>
+            </div>
+        </nav>
+
+        <div class="nav-actions">
+            <div class="lang-switch">
+                <a href="/ja<%= pageSlugForLang %>"<% if (lang === 'ja') { %> class="active"<% } %>>JP</a>
+                <a href="/en<%= pageSlugForLang %>"<% if (lang === 'en') { %> class="active"<% } %>>EN</a>
+                <a href="/ko<%= pageSlugForLang %>"<% if (lang === 'ko') { %> class="active"<% } %>>KR</a>
+            </div>
+            <a href="/<%= lang %>/contact" class="btn-primary"><%= contactLabel %></a>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
