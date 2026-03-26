@@ -14,6 +14,7 @@ const adminRoutes = require('./routes/admin');
 const seoRoutes = require('./routes/seo');
 
 const app = express();
+app.set('trust proxy', 1);
 const PORT = process.env.PORT || 3000;
 
 // ======================
