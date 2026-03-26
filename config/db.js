@@ -9,7 +9,7 @@ const hasFullPgConfig = [
     process.env.PGDATABASE
 ].every(Boolean);
 
-const connectionString = process.env.DATABASE_URL
+const connectionString = process.env.SUPABASE_URL || process.env.DATABASE_URL
     || (hasFullPgConfig
         ? `postgresql://${encodeURIComponent(process.env.PGUSER)}:${encodeURIComponent(process.env.PGPASSWORD)}@${process.env.PGHOST}:${process.env.PGPORT}/${process.env.PGDATABASE}`
         : '');
