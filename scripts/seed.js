@@ -29,6 +29,7 @@ async function seed() {
         process.exit(1);
     } finally {
         await pool.end();
+        process.exit(0);
     }
 }
 
