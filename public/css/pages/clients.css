@@ -1,3 +1,29 @@
+/* ===================== RESPONSIVE FIXES FOR MOBILE ===================== */
+@media (max-width: 768px) {
+    .clients-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .gallery-item {
+        height: 120px;
+        min-height: 100px;
+        max-width: 95vw;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .clients-grid {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+    }
+    .gallery-item {
+        height: 90px;
+        min-height: 80px;
+        max-width: 99vw;
+        padding: 0;
+    }
+}
 /* ===================== HERO ===================== */
         .clients-hero {
             padding-top: 180px; padding-bottom: 100px;
