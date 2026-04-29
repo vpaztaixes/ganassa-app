@@ -186,10 +186,50 @@
         }
 
         .event-description p {
-            font-size: 1.2rem;
-            color: var(--grey-dark);
+            font-size: 1.15rem;
+            color: var(--black);
             line-height: 1.8;
-            font-weight: 400;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-details-heading {
+            font-family: var(--heading-font);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--shamrock-green);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--shamrock-green-light);
+        }
+
+        .event-details-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            display: inline-block;
+            text-align: left;
+            border-left: 3px solid var(--shamrock-green);
+            padding-left: 1.5rem;
+        }
+
+        .event-details-list li {
+            font-size: 1.05rem;
+            line-height: 2;
+            padding: 0.05rem 0;
+        }
+
+        .detail-label {
+            color: var(--shamrock-green);
+            font-weight: 700;
+        }
+
+        .detail-value {
+            color: var(--black);
+            font-weight: 700;
         }
 
         .event-highlights {

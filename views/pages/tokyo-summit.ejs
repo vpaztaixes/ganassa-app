@@ -57,7 +57,51 @@
             <h2><%- about.title || 'ABOUT THE <span>SUMMIT</span>' %></h2>
         </div>
         <div class="event-description">
-            <p><%= about.description || 'Tokyo Summit 2026 is the premier gathering for football industry leaders, club executives, marketing professionals, and digital innovators from Europe and Asia. Join us for three days of networking, insights, and strategic discussions on the future of football business in the Asian market.' %></p>
+<%
+    const detailLabels = {
+        en: { heading: 'Event Details', Location: 'Location', Date: 'Date', Format: 'Format', Attendance: 'Attendance' },
+        ja: { heading: 'イベント詳細',  Location: '会場',     Date: '日程',   Format: '形式',   Attendance: '参加方法' },
+        ko: { heading: '행사 정보',     Location: '장소',     Date: '일시',   Format: '형식',   Attendance: '참가 방법' }
+    };
+    const detailValues = {
+        en: { Location: 'Shibuya Stream Hall (Tokyo, Japan)', Date: '25th September 2026', Format: 'One-day summit + networking sessions', Attendance: 'By invitation / application' },
+        ja: { Location: '渋谷ストリームホール（東京、日本）', Date: '2026年9月25日', Format: '1日間のサミット＋ネットワーキングセッション', Attendance: '招待制 / 応募制' },
+        ko: { Location: '시부야 스트림 홀 (도쿄, 일본)', Date: '2026년 9월 25일', Format: '1일 서밋 + 네트워킹 세션', Attendance: '초청 / 신청' }
+    };
+    const dl = detailLabels[lang] || detailLabels.en;
+    const dv = detailValues[lang] || detailValues.en;
+
+    const rawDesc = about.description || 'Football Summit Tokyo is a global industry event designed to connect international football stakeholders with the Japanese market.\n\nBringing together clubs, leagues, media organisations, brands, and local partners, the summit creates a platform for collaboration, knowledge sharing, and business development.';
+    let descHtml = '';
+    let inList = false;
+    let foundDetails = false;
+    for (const line of rawDesc.split('\n')) {
+        const t = line.trim();
+        if (!t) continue;
+        if (t.match(/^event details$/i)) {
+            if (inList) { descHtml += '</ul>'; inList = false; }
+            descHtml += `<h3 class="event-details-heading">${dl.heading}</h3><ul class="event-details-list">`;
+            inList = true;
+            foundDetails = true;
+        } else if (inList && t.match(/^(Location|Date|Format|Attendance):/i)) {
+            const ci = t.indexOf(':');
+            const key = t.slice(0, ci);
+            descHtml += `<li><span class="detail-label">${dl[key] || key}:</span> <span class="detail-value">${t.slice(ci+1).trim()}</span></li>`;
+        } else {
+            if (inList) { descHtml += '</ul>'; inList = false; }
+            descHtml += `<p>${t}</p>`;
+        }
+    }
+    if (inList) descHtml += '</ul>';
+    if (!foundDetails) {
+        descHtml += `<h3 class="event-details-heading">${dl.heading}</h3><ul class="event-details-list">`;
+        for (const key of ['Location', 'Date', 'Format', 'Attendance']) {
+            descHtml += `<li><span class="detail-label">${dl[key]}:</span> <span class="detail-value">${dv[key]}</span></li>`;
+        }
+        descHtml += '</ul>';
+    }
+%>
+            <%- descHtml %>
         </div>
         <div class="event-highlights">
             <div class="highlight-card">

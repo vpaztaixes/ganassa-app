@@ -108,10 +108,13 @@ exports.contact = async (req, res, next) => {
 exports.tokyoSummit = async (req, res, next) => {
     try {
         const data = await buildPageData(req, 'tokyo-summit-2026');
-        const summitFormFields = await db.getMany(
-            `SELECT field_type, field_name, label_en, label_ja, label_ko, placeholder_en, placeholder_ja, placeholder_ko, is_required, is_visible, sort_order, options_json
-             FROM form_fields WHERE form_id = 'summit' AND is_visible = true ORDER BY sort_order ASC, id ASC`
-        ).catch(() => []);
-        res.render('pages/tokyo-summit', { ...data, summitFormFields });
+        const [summitFormFields, enContent] = await Promise.all([
+            db.getMany(
+                `SELECT field_type, field_name, label_en, label_ja, label_ko, placeholder_en, placeholder_ja, placeholder_ko, is_required, is_visible, sort_order, options_json
+                 FROM form_fields WHERE form_id = 'summit' AND is_visible = true ORDER BY sort_order ASC, id ASC`
+            ).catch(() => []),
+            req.lang !== 'en' ? contentService.getPageContent('tokyo-summit-2026', 'en') : Promise.resolve(null)
+        ]);
+        res.render('pages/tokyo-summit', { ...data, summitFormFields, enContent });
     } catch (err) { next(err); }
 };
